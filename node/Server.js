@@ -44,10 +44,10 @@ Server.prototype.createSocket = function(config)
  * On websocket Connexion
  *
  * @param object client
- *
- * @return {[type]}
  */
 Server.prototype.onSocketConnection = function(client)
 {
-    // body...
+    console.log(typeof(client), client);
 };
+
+module.exports = Server;

@@ -1,4 +1,4 @@
-var Server = require("../node/Server.js"),
+var Server = require("./Server.js"),
     config = require('../app/config/config.js');
 
 new Server(config);
