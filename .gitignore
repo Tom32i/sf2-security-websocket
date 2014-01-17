@@ -7,5 +7,6 @@
 !app/logs/.gitkeep
 /build/
 /vendor/
+/node_modules/
 /bin/
 /composer.phar
