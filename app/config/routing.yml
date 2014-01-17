@@ -1,0 +1,5 @@
+tom32i_demo:
+    resource: "@Tom32iDemoBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
