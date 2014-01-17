@@ -1,7 +1,20 @@
 {% extends "base.html.twig" %}
 
+{% block stylesheets %}
+    {% stylesheets 'bundles/tom32idemo/css/*.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock stylesheets %}
+
 {% block title 'Symfony 2 Security & Websockets' %}
 
 {% block body %}
     <h1></h1>
 {% endblock body %}
+
+{% block javascripts %}
+    <script src="/socket.io/socket.io.js"></script>
+    {% stylesheets 'bundles/tom32idemo/js/*.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endstylesheets %}
+{% endblock %}
