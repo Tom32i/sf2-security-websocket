@@ -10,10 +10,19 @@
 	margin: 5% auto 0;
 }
 
-h1 small {
-	display:  block;
-	font-family: 50%;
+#intro .attribution {
+	font-family: Helvetica, sans-serif;
+	font-weight: bold;
+	text-align: center;
+	font-size: 100%;
+	line-height: .3;
+	color: rgba(0,0,0,.7);
+	text-shadow: none;
+	background: url(img/rainbow-wood.jpg) bottom;
+	padding:.6em 0 0;
+	overflow: hidden;
 }
+
 
 #css-controls-demo label {
 	display: block;
@@ -25,8 +34,8 @@ h1 small {
 		display: none;
 	}
 
-	#intro h1 {
+	/*#intro h1 {
 		background: url(logo.svg) no-repeat center;
 		background-size:100% auto;
-	}
+	}*/
 }
