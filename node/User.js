@@ -1,3 +1,9 @@
+/**
+ * User
+ *
+ * @param {string} username
+ * @param {array} roles
+ */
 function User(username, roles)
 {
     this.username = username;
@@ -5,6 +11,11 @@ function User(username, roles)
     this.socket   = null;
 }
 
+/**
+ * Set user socket
+ *
+ * @param {object} socket
+ */
 User.prototype.setSocket = function(socket)
 {
     if (this.socket == null) {
@@ -12,6 +23,11 @@ User.prototype.setSocket = function(socket)
     }
 };
 
+/**
+ * Get a JSON serializable version of the user
+ *
+ * @return {object}
+ */
 User.prototype.serialize = function()
 {
     return {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Tom32i\Bundle\WebsocketBundle\Model;
+namespace Tom32i\Bundle\DemoBundle\Model;
 
 use Symfony\Component\Security\Core\User\UserInterface;
-use Tom32i\Bundle\WebsocketBundle\Intefaces\RedisIndexable;
+use Tom32i\Bundle\DemoBundle\Interfaces\RedisIndexable;
 
 /**
  * Ticket

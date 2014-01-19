@@ -1,6 +1,6 @@
 <?php
 
-namespace Tom32i\Bundle\WebsocketBundle\Intefaces;
+namespace Tom32i\Bundle\DemoBundle\Interfaces;
 
 /**
  * Indexable by redis

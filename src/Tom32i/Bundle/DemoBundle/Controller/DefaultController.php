@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Tom32i\Bundle\WebsocketBundle\Model\Ticket;
+use Tom32i\Bundle\DemoBundle\Model\Ticket;
 
 class DefaultController extends Controller
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Tom32i\Bundle\WebsocketBundle\Service;
+namespace Tom32i\Bundle\DemoBundle\Service;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Tom32i\Bundle\WebsocketBundle\Intefaces\RedisIndexable;
+use Tom32i\Bundle\DemoBundle\Interfaces\RedisIndexable;
 
 /**
  * Redis indexer
