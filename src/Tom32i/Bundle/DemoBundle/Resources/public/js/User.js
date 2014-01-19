@@ -11,6 +11,16 @@ User.prototype.setSocket = function(socket)
     this.socket = socket;
 };
 
+User.prototype.setUsername = function(username)
+{
+    this.username = username;
+};
+
+User.prototype.setRoles = function(roles)
+{
+    this.roles = roles;
+};
+
 User.prototype.getElement = function()
 {
     if (this.element == null) {

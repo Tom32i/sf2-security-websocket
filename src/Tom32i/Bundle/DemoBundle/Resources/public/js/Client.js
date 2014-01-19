@@ -26,21 +26,26 @@ Client.prototype.attachEvents = function()
     this.socketConnection.on("user:leave", this.onUserLeave.bind(this));
 };
 
-Client.prototype.onSocketConnected = function (e)
+Client.prototype.onSocketConnected = function ()
 {
-    console.log("Connected to socket server: ", e, this.socketConnection);
+    console.log("Connected to socket server");
+
+    this.me = new User();
+
+    this.me.setSocket(this.socketConnection.socket);
 };
 
 Client.prototype.onSocketDisconnected = function(e)
 {
     console.log("Disconnected from socket server: %o", e);
+
+    this.me = null;
 };
 
 Client.prototype.onAuthenticated = function(data)
 {
-    this.me = new User(data.username, data.roles);
-
-    this.me.setSocket(this.socketConnection);
+    this.me.setUsername(data.username);
+    this.me.setRoles(data.roles);
 
     this.addUser(this.me);
 };
