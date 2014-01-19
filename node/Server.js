@@ -1,6 +1,7 @@
 // Requirements
 var io = require("socket.io")
-    redis = require("redis");
+    redis = require("redis"),
+    User = require("./User");
 
 /**
  * Websocket Server
@@ -12,6 +13,7 @@ function Server(config)
     this.config = config;
     this.socket = this.createSocket(config);
     this.redis  = redis.createClient();
+    this.users  = {};
 
     this.redis.on("error", function (error) { console.error("RedisManager Error:", error); });
 
@@ -50,6 +52,39 @@ Server.prototype.createSocket = function(config)
 Server.prototype.onSocketConnection = function(socket)
 {
     console.log("Client connected: ", socket.id);
+
+    var server = this,
+        data = socket.handshake.user,
+        user = new User(data.username, data.roles);
+
+    socket.on('disconnect', function () { server.onSocketDisconnection(this); });
+
+    user.setSocket(socket);
+
+    this.addUser(user);
+};
+
+/**
+ * On websocket disconnexion
+ *
+ * @param {Object} client
+ */
+Server.prototype.onSocketDisconnection = function(socket)
+{
+    var user = null;
+
+    for (var username in this.users) {
+        if (this.users[username].socket.id === socket.id) {
+            user = this.users[username];
+            break;
+        }
+    }
+
+    if (user) {
+        user.socket.broadcast.emit('user:leave', {username: user.username});
+
+        delete this.users[username];
+    }
 };
 
 /**
@@ -60,12 +95,50 @@ Server.prototype.onSocketConnection = function(socket)
  */
 Server.prototype.authorizationHandler = function(handshakeData, callback)
 {
-    var error = null,
-        authorized = true;
+    var sessionId = handshakeData.headers.cookie.replace(/(?:(?:^|.*;\s*)PHPSESSID\s*\=\s*([^;]*).*$)|^.*$/, "$1"),
+        address = handshakeData.address.address,
+        token = handshakeData.query.ticket,
+        key = 'ticket:' + token;
 
-    console.log(handshakeData);
+    this.redis.get(key, function (redisError, result) {
 
-    callback(error, authorized);
+        if (redisError || !result) {
+            return callback({message: "Ticket '" + token + "' could not be found."}, false);
+        }
+
+        var ticket = JSON.parse(result);
+
+        if (ticket.address != address) {
+            return callback({message: "Access forbidden from '" + address + "'."}, false);
+        }
+
+        if (ticket.sessionId != sessionId) {
+            return callback({message: "Wrong session id."}, false);
+        }
+
+        handshakeData.user = ticket.user;
+
+        callback(null, true);
+    });
+};
+
+/**
+ * Add an user to the list
+ *
+ * @param {User} user
+ */
+Server.prototype.addUser = function(user)
+{
+    if (typeof this.users[user.username] == 'undefined') {
+        user.socket.emit('me:authenticated', user.serialize());
+        user.socket.broadcast.emit('user:join', user.serialize());
+
+        for (var username in this.users) {
+            user.socket.emit('user:join', this.users[username].serialize());
+        }
+
+        this.users[user.username] = user;
+    }
 };
 
 module.exports = Server;

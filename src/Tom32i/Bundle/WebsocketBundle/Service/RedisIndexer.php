@@ -86,7 +86,6 @@ class RedisIndexer
     protected function disconnect()
     {
         if ($this->connected) {
-            var_dump($this->redis->close());
             $this->connected = !$this->redis->close();
         }
 
@@ -189,17 +188,17 @@ class RedisIndexer
     }
 
     /**
-     * Index an entity into redis database
+     * Index an object into redis database
      *
      * @param RedisIndexable $object
      */
     public function index(RedisIndexable $object, $ttl = null)
     {
-        $this->set($object->getRedisIndex(), $entity, $ttl);
+        $this->set($object->getRedisIndex(), $object, $ttl);
     }
 
     /**
-     * Remove an entity from redis database
+     * Remove an object from redis database
      *
      * @param RedisIndexable $object
      */

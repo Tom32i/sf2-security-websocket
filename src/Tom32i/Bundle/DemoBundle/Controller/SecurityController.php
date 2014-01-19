@@ -18,6 +18,8 @@ class SecurityController extends Controller
      * Login action
      *
      * @Template()
+     *
+     * @param Request $request
      */
     public function loginAction(Request $request)
     {

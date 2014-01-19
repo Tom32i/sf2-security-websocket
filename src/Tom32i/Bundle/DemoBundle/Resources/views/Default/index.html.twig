@@ -9,7 +9,10 @@
 {% block title 'Symfony 2 Security & Websockets' %}
 
 {% block body %}
-    <h1></h1>
+    <h1>Symfony 2 Security & Websockets</h1>
+
+    <ul id="user-list">
+    </ul>
 {% endblock body %}
 
 {% block javascripts %}
@@ -18,6 +21,6 @@
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
     <script>
-        window.onload = function (e) { new Client(); };
+        window.onload = function (e) { new Client('{{ ticket }}'); };
     </script>
 {% endblock %}

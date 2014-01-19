@@ -24,7 +24,7 @@ class Ticket implements RedisIndexable
      *
      * @var string
      */
-    protected $session;
+    protected $sessionId;
 
     /**
      * IP Address
@@ -44,15 +44,15 @@ class Ticket implements RedisIndexable
      * Constructor
      *
      * @param User $user
-     * @param string $session
+     * @param string $sessionId
      * @param string $address
      */
-    public function __construct(UserInterface $user, $session, $address)
+    public function __construct(UserInterface $user, $sessionId, $address)
     {
-        $this->user    = $user;
-        $this->session = $session;
-        $this->address = $address;
-        $this->created = new \DateTime;
+        $this->user      = $user;
+        $this->sessionId = $sessionId;
+        $this->address   = $address;
+        $this->created   = new \DateTime;
     }
 
     /**
@@ -87,7 +87,7 @@ class Ticket implements RedisIndexable
                 'username' => $this->user->getUsername(),
                 'roles' => $this->user->getRoles()
             ],
-            'session' => $this->session,
+            'sessionId' => $this->sessionId,
             'address' => $this->address,
             'created' => $this->created->format('U'),
         ];

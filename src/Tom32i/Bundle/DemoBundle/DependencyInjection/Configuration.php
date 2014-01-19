@@ -20,9 +20,21 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('tom32i_demo');
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        $rootNode
+            ->children()
+                ->arrayNode('redis')
+                    ->info('<info>Redis server configuration</info>')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->scalarNode('host')
+                            ->defaultValue('127.0.0.1')
+                        ->end()
+                        ->scalarNode('port')
+                            ->defaultValue(6379)
+                        ->end()
+                    ->end()
+            ->end();
+
 
         return $treeBuilder;
     }
