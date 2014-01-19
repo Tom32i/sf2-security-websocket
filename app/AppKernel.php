@@ -17,6 +17,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Tom32i\Bundle\DemoBundle\Tom32iDemoBundle(),
+            new Tom32i\Bundle\WebsocketBundle\Tom32iWebsocketBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

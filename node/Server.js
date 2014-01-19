@@ -5,7 +5,7 @@ var io = require("socket.io")
 /**
  * Websocket Server
  *
- * @param object config
+ * @param {object} config
  */
 function Server(config)
 {
@@ -21,19 +21,21 @@ function Server(config)
 /**
  * Create a websocket listener
  *
- * @param object config
+ * @param {object} config
  *
- * @return object
+ * @return {object}
  */
 Server.prototype.createSocket = function(config)
 {
-    var socket = io.listen(config.socket_port);
+    var socket = io.listen(config.socket_port),
+        server = this;
 
     socket.configure(
         function() {
             socket.set('transports', ["websocket"]);
             socket.set('log level', 2);
             socket.set('origin', config.allowed_domain);
+            socket.set('authorization', server.authorizationHandler.bind(server));
         }
     );
 
@@ -43,11 +45,27 @@ Server.prototype.createSocket = function(config)
 /**
  * On websocket Connexion
  *
- * @param object client
+ * @param {object} socket
  */
-Server.prototype.onSocketConnection = function(client)
+Server.prototype.onSocketConnection = function(socket)
 {
-    console.log(typeof(client), client);
+    console.log("Client connected: ", socket.id);
+};
+
+/**
+ * Authorization Handler
+ *
+ * @param {object} handshakeData
+ * @param {Function} callback
+ */
+Server.prototype.authorizationHandler = function(handshakeData, callback)
+{
+    var error = null,
+        authorized = true;
+
+    console.log(handshakeData);
+
+    callback(error, authorized);
 };
 
 module.exports = Server;

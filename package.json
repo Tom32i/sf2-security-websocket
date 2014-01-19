@@ -1,11 +1,12 @@
 {
-        "name": "sf2-security-websocket",
-        "description": "Symfony2 Security & Websockets",
-        "version": "0.0.1",
-        "private": true,
-        "dependencies": {
-            "socket.io": "*",
-            "redis": "*",
-            "hiredis": "*"
-        }
+    "name": "sf2-security-websocket",
+    "description": "Symfony2 Security & Websockets",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+    "socket.io": "*",
+    "redis": "*",
+    "hiredis": "*",
+    "yamljs": "*"
+    }
 }

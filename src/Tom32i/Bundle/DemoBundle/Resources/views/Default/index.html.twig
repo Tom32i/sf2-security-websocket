@@ -14,7 +14,10 @@
 
 {% block javascripts %}
     <script src="/socket.io/socket.io.js"></script>
-    {% stylesheets 'bundles/tom32idemo/js/*.js' %}
+    {% javascripts 'bundles/tom32idemo/js/*' %}
         <script src="{{ asset_url }}"></script>
-    {% endstylesheets %}
+    {% endjavascripts %}
+    <script>
+        window.onload = function (e) { new Client(); };
+    </script>
 {% endblock %}
