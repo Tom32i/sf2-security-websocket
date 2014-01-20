@@ -58,6 +58,7 @@ Server.prototype.onSocketConnection = function(socket)
         user = new User(data.username, data.roles);
 
     socket.on('disconnect', function () { server.onSocketDisconnection(this); });
+    socket.on('user:move', function (data) { server.onUserMove(this, data); });
 
     user.setSocket(socket);
 
@@ -84,6 +85,28 @@ Server.prototype.onSocketDisconnection = function(socket)
         user.socket.broadcast.emit('user:leave', {username: user.username});
 
         delete this.users[username];
+    }
+};
+
+/**
+ * On user move
+ *
+ * @param {object} socket
+ * @param {object} data
+ *
+ * @return {boolean}
+ */
+Server.prototype.onUserMove = function(socket, data)
+{
+    if (typeof(data.x) == 'undefined' || typeof(data.y) == 'undefined') {
+        return false;
+    }
+
+    for (var username in this.users) {
+        if (this.users[username].socket.id === socket.id) {
+            this.users[username].setPosition(data.x, data.y);
+            return true;
+        }
     }
 };
 

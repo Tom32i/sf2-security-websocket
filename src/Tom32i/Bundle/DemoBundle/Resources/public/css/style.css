@@ -1,3 +1,11 @@
 label {
     display: block;
 }
+
+.user-list {
+    width: 100%;
+    height: auto;
+}
+.user-list > li {
+    position: absolute;
+}

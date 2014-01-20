@@ -4,6 +4,8 @@ function User(username, roles)
     this.roles    = typeof(roles) != 'undefined' ? roles : [];
     this.socket   = null;
     this.element  = null;
+    this.x        = 0;
+    this.y        = 0;
 }
 
 User.prototype.setSocket = function(socket)
@@ -37,4 +39,18 @@ User.prototype.detach = function()
     if (this.element) {
         this.element.parentNode.removeChild(this.element);
     }
+};
+
+User.prototype.setPosition = function(x, y)
+{
+    this.x = x;
+    this.y = y;
+
+    this.updateElement();
+};
+
+User.prototype.updateElement = function()
+{
+    this.element.style.left = this.x + 'px';
+    this.element.style.top  = this.y + 'px';
 };
