@@ -103,22 +103,22 @@ Server.prototype.authorizationHandler = function(handshakeData, callback)
     this.redis.get(key, function (redisError, result) {
 
         if (redisError || !result) {
-            return callback({message: "Ticket '" + token + "' could not be found."}, false);
+            return callback("Ticket '" + token + "' could not be found.", false);
         }
 
         var ticket = JSON.parse(result);
 
         if (ticket.address != address) {
-            return callback({message: "Access forbidden from '" + address + "'."}, false);
+            return callback("Access forbidden from '" + address + "'.", false);
         }
 
         if (ticket.sessionId != sessionId) {
-            return callback({message: "Wrong session id."}, false);
+            return callback("Wrong session id.", false);
         }
 
-        handshakeData.user = ticket.user;
-
         callback(null, true);
+
+        handshakeData.user = ticket.user;
     });
 };
 
