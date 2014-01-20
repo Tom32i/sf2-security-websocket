@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="325px" height="175px" viewBox="0 0 325 175" enable-background="new 0 0 325 175" xml:space="preserve">
+	 <defs><style type="text/css">polygon:hover, g:hover rect { fill: #992652; }</style></defs>
+<g id="symfony-server">
+	<rect fill="#CCCCCC" width="125" height="50"/>
+	<text transform="matrix(1 0 0 1 10 20)" enable-background="new    "><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="20">S</tspan><tspan x="9.98" y="0" font-family="'MyriadPro-Regular'" font-size="20">ecu</tspan><tspan x="39.979" y="0" font-family="'MyriadPro-Regular'" font-size="20">r</tspan><tspan x="46.6" y="0" font-family="'MyriadPro-Regular'" font-size="20">i</tspan><tspan x="51.279" y="0" font-family="'MyriadPro-Regular'" font-size="20">t</tspan><tspan x="58.079" y="0" font-family="'MyriadPro-Regular'" font-size="20">y</tspan></text>
+	<text transform="matrix(1 0 0 1 10 40)" enable-background="new    "><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="20">S</tspan><tspan x="9.98" y="0" font-family="'MyriadPro-Regular'" font-size="20">e</tspan><tspan x="20" y="0" font-family="'MyriadPro-Regular'" font-size="20">r</tspan><tspan x="27.04" y="0" font-family="'MyriadPro-Regular'" font-size="20">v</tspan><tspan x="36.459" y="0" font-family="'MyriadPro-Regular'" font-size="20">er</tspan></text>
+</g>
+<g id="websocket-server">
+	<rect x="200" fill="#CCCCCC" width="125" height="50"/>
+	<text transform="matrix(1 0 0 1 210 20)" enable-background="new    "><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="20">W</tspan><tspan x="16.26" y="0" font-family="'MyriadPro-Regular'" font-size="20">ebsocket</tspan></text>
+	<text transform="matrix(1 0 0 1 210 40)" enable-background="new    "><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="20">S</tspan><tspan x="9.98" y="0" font-family="'MyriadPro-Regular'" font-size="20">e</tspan><tspan x="20" y="0" font-family="'MyriadPro-Regular'" font-size="20">r</tspan><tspan x="27.039" y="0" font-family="'MyriadPro-Regular'" font-size="20">v</tspan><tspan x="36.459" y="0" font-family="'MyriadPro-Regular'" font-size="20">er</tspan></text>
+</g>
+<g id="client-browser">
+	<rect y="125" fill="#CCCCCC" width="325" height="50"/>
+	<text transform="matrix(1 0 0 1 10 155)" enable-background="new    "><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="20">Clie</tspan><tspan x="31.02" y="0" font-family="'MyriadPro-Regular'" font-size="20">n</tspan><tspan x="42.039" y="0" font-family="'MyriadPro-Regular'" font-size="20">t</tspan></text>
+</g>
+<polygon id="server-side-ticket" fill="#B5B5B5" points="177.505,12.005 170.434,12.005 180.438,22.001 137.991,22.001
+	137.991,26.998 180.438,26.998 170.434,36.995 177.505,36.995 190.009,24.5 "/>
+<polygon id="server-side-ticket_1_" fill="#AFAFAF" points="0,73.995 0,81.066 9.996,71.062 9.996,113.509 14.993,113.509
+	14.993,71.062 24.99,81.066 24.99,73.995 12.495,61.491 "/>
+<polygon id="server-side-ticket_2_" fill="#AFAFAF" points="124.993,101.005 124.993,93.934 114.997,103.938 114.997,61.491
+	110,61.491 110,103.938 100.003,93.934 100.003,101.005 112.498,113.509 "/>
+<polygon id="server-side-ticket_4_" fill="#AFAFAF" points="200,76.995 200,84.066 209.996,74.062 209.996,116.509 214.993,116.509
+	214.993,74.062 224.99,84.066 224.99,76.995 212.495,64.491 "/>
+<polygon id="server-side-ticket_3_" fill="#AFAFAF" points="324.993,104.005 324.993,96.934 314.997,106.938 314.997,64.491
+	310,64.491 310,106.938 300.003,96.934 300.003,104.005 312.498,116.509 "/>
+</svg>
