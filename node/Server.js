@@ -1,6 +1,5 @@
 // Requirements
 var io = require("socket.io")
-    redis = require("redis"),
     User = require("./User");
 
 /**
@@ -12,10 +11,7 @@ function Server(config)
 {
     this.config = config;
     this.socket = this.createSocket(config);
-    this.redis  = redis.createClient();
     this.users  = {};
-
-    this.redis.on("error", function (error) { console.error("RedisManager Error:", error); });
 
     this.socket.sockets.on("connection", this.onSocketConnection.bind(this));
 }
@@ -37,7 +33,6 @@ Server.prototype.createSocket = function(config)
             socket.set('transports', ["websocket"]);
             socket.set('log level', 2);
             socket.set('origin', config.allowed_domain);
-            socket.set('authorization', server.authorizationHandler.bind(server));
         }
     );
 
@@ -54,8 +49,7 @@ Server.prototype.onSocketConnection = function(socket)
     console.log("Client connected: ", socket.id);
 
     var server = this,
-        data = socket.handshake.user,
-        user = new User(data.username, data.roles);
+        user = new User(socket.id);
 
     socket.on('disconnect', function () { server.onSocketDisconnection(this); });
 
@@ -85,41 +79,6 @@ Server.prototype.onSocketDisconnection = function(socket)
 
         delete this.users[username];
     }
-};
-
-/**
- * Authorization Handler
- *
- * @param {object} handshakeData
- * @param {Function} callback
- */
-Server.prototype.authorizationHandler = function(handshakeData, callback)
-{
-    var sessionId = handshakeData.headers.cookie.replace(/(?:(?:^|.*;\s*)PHPSESSID\s*\=\s*([^;]*).*$)|^.*$/, "$1"),
-        address = handshakeData.address.address,
-        token = handshakeData.query.ticket,
-        key = 'ticket:' + token;
-
-    this.redis.get(key, function (redisError, result) {
-
-        if (redisError || !result) {
-            return callback("Ticket '" + token + "' could not be found.", false);
-        }
-
-        var ticket = JSON.parse(result);
-
-        if (ticket.address != address) {
-            return callback("Access forbidden from '" + address + "'.", false);
-        }
-
-        if (ticket.sessionId != sessionId) {
-            return callback("Wrong session id.", false);
-        }
-
-        callback(null, true);
-
-        handshakeData.user = ticket.user;
-    });
 };
 
 /**

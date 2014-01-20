@@ -24,9 +24,5 @@ class Tom32iDemoExtension extends Extension
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
-
-        $container
-            ->getDefinition('tom32i_demo.redis_indexer')
-            ->addMethodCall('setConfig', array($config['redis']));
     }
 }

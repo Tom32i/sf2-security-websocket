@@ -20,22 +20,6 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('tom32i_demo');
 
-        $rootNode
-            ->children()
-                ->arrayNode('redis')
-                    ->info('<info>Redis server configuration</info>')
-                    ->addDefaultsIfNotSet()
-                    ->children()
-                        ->scalarNode('host')
-                            ->defaultValue('127.0.0.1')
-                        ->end()
-                        ->scalarNode('port')
-                            ->defaultValue(6379)
-                        ->end()
-                    ->end()
-            ->end();
-
-
         return $treeBuilder;
     }
 }

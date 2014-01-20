@@ -19,14 +19,6 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $ticket  = new Ticket(
-            $this->getUser(),
-            $request->getSession()->getId(),
-            $request->server->get('REMOTE_ADDR')
-        );
-
-        $this->get('tom32i_demo.redis_indexer')->index($ticket, $ticket->getTTl());
-
-        return ['ticket' => $ticket];
+        return [];
     }
 }
