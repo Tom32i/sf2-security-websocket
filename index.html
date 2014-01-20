@@ -42,7 +42,6 @@
 Host:websocket.symfony2.local:8000
 Upgrade:websocket
 Connection:Upgrade
-Sec-WebSocket-Extensions:permessage-deflate; client_max_window_bits, x-webkit-deflate-frame
 Sec-WebSocket-Key:ijIdeSs13H1t6Ez3rZtdaA==
 Sec-WebSocket-Version:13
 Origin:http://websocket.symfony2.local
@@ -60,10 +59,26 @@ Upgrade: websocket</code></pre>
 
     <section class="slide">
         <h2>Event system</h2>
-        <pre class="delayed"><code lang="javascript">socket.emit("user:say", { user: 1, message: "Hi." });</code></pre>
-        <pre class="delayed"><code lang="javascript">socket.on("user:say", function (data) { console.log(data.message); });</code></pre>
+        <pre class="delayed"><code lang="javascript">socket.emit(
+    "user:say",
+    {user: 1, message: "Hi."}
+);</code></pre>
+        <pre class="delayed"><code lang="javascript">socket.on(
+    "user:say",
+    function (data) { console.log(data.message); }
+);</code></pre>
     </section>
 </section>
+
+<section title="The security problem">
+    <header class="slide">
+        <h1>
+            <a href="http://websocket.symfony2.local/" target="_blank">
+                See it in action
+            </a>
+        </h1>
+    </header>
+<section>
 
 <section title="The security problem">
     <header class="slide">
@@ -76,6 +91,17 @@ Upgrade: websocket</code></pre>
             <li class="delayed">No authentication</li>
             <li class="delayed">No authorization</li>
         </ul>
+    </section>
+
+    <section class="slide">
+        <h2>Anyone can connect</h2>
+        <pre class="delayed"><code lang="javascript">var script = document.createElement("script");
+script.src = "/socket.io/socket.io.js";
+document.body.appendChild(script);</code></pre>
+<pre class="delayed"><code lang="javascript">io.connect(
+    "http://websocket.symfony2.local/",
+    { port: 8000, transports: ["websocket"] }
+);</code></pre>
     </section>
 
     <section class="slide">
@@ -96,10 +122,11 @@ Upgrade: websocket</code></pre>
     </header>
 
     <section class="slide">
-        <h2>The ticket pattern</h2>
+        <h2>Forge a Ticket when you need it</h2>
         <ul>
-            <li class="delayed">Let Symfony handle the security</li>
-            <li class="delayed">Give Node a single simple task</li>
+            <li class="delayed">On a specific route</li>
+            <li class="delayed">On each Request</li>
+            <li class="delayed">On client's demand</li>
         </ul>
     </section>
 </section>
