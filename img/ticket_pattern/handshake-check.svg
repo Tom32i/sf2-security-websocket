@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     width="325px" height="175px" viewBox="0 0 325 175" enable-background="new 0 0 325 175" xml:space="preserve">
+     <defs><style type="text/css">
+        .cyan { fill: #66D9EF; }
+        .pink { fill: #F92672; }
+        .green { fill: #A6E22E; }
+        .purple { fill: #AE81FF; }
+        .black { fill: #272822; }
+        .gray { fill: #75715E; }
+        .pale { fille: #AFAFAF; }
+        .white { fill: #F8F8F2; }
+    </style></defs>
+<g id="symfony-server">
+    <rect width="125" height="50" fill="#F8F8F2" />
+    <text x="16" y="29" font-family="'MyriadPro-Regular'" font-size="14" fill="#272822">Security Server</text>
+</g>
+<g id="websocket-server">
+    <rect x="200" width="125" height="50" fill="#F8F8F2" />
+    <text x="210" y="29" font-family="'MyriadPro-Regular'" font-size="14" fill="#272822">Websocket Server</text>
+</g>
+<g id="client-browser">
+    <rect y="125" width="325" height="50" fill="#F8F8F2" />
+    <text x="16" y="154" font-family="'MyriadPro-Regular'" font-size="14" fill="#272822">Client's browser</text>
+</g>
+<polygon id="request" fill="#AFAFAF" points="0,73.995 0,81.066 9.996,71.062 9.996,113.509 14.993,113.509
+    14.993,71.062 24.99,81.066 24.99,73.995 12.495,61.491 "/>
+<polygon id="server-side-ticket" fill="#AFAFAF" points="177.505,12.005 170.434,12.005 180.438,22.001 137.991,22.001
+    137.991,26.998 180.438,26.998 170.434,36.995 177.505,36.995 190.009,24.5 "/>
+<polygon id="response" fill="#AFAFAF" points="124.993,101.005 124.993,93.934 114.997,103.938 114.997,61.491
+    110,61.491 110,103.938 100.003,93.934 100.003,101.005 112.498,113.509 "/>
+<polygon id="handshake-request" fill="#AFAFAF" points="200,76.995 200,84.066 209.996,74.062 209.996,116.509 214.993,116.509
+    214.993,74.062 224.99,84.066 224.99,76.995 212.495,64.491 "/>
+<text x="235" y="85" font-family="'MyriadPro-Regular'" font-size="10" fill="#F8F8F2">Handshake Request</text>
+<text x="235" y="95" font-family="'MyriadPro-Regular'" font-size="10" fill="#F8F8F2">with Ticket</text>
+</svg>

@@ -9,20 +9,10 @@
 	min-height: 500px;
 	margin: 5% auto 0;
 }
-
-#intro .attribution {
-	font-family: Helvetica, sans-serif;
-	font-weight: bold;
-	text-align: center;
-	font-size: 100%;
-	line-height: .3;
-	color: rgba(0,0,0,.7);
-	text-shadow: none;
-	background: url(img/rainbow-wood.jpg) bottom;
-	padding:.6em 0 0;
-	overflow: hidden;
+.block {
+	display: block;
+	margin: 0;
 }
-
 
 #css-controls-demo label {
 	display: block;
@@ -36,6 +26,7 @@
 	font-family: 'Helvetica Neue', Helvetica, sans-serif;
 	font-weight: 100;
 	font-size: 250%;
+	line-height: 1em;
 }
 
 #intro small {
@@ -43,4 +34,10 @@
 	font-weight: 400;
 	opacity: .8;
 	font-size: 60%;
+	display: block;
+	margin-top: 1em;
+}
+
+.slide.image.partial {
+	background: none;
 }
