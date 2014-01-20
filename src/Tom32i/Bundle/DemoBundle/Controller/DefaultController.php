@@ -8,6 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Tom32i\Bundle\DemoBundle\Model\Ticket;
 
+/**
+ * Default Controller
+ */
 class DefaultController extends Controller
 {
     /**
@@ -22,7 +25,7 @@ class DefaultController extends Controller
             $request->server->get('REMOTE_ADDR')
         );
 
-        $this->get('tom32i_demo.redis_indexer')->index($ticket, 10);
+        $this->get('tom32i_demo.redis_indexer')->index($ticket, $ticket->getTTl());
 
         return ['ticket' => $ticket];
     }
