@@ -9,6 +9,8 @@ function User(username, roles)
     this.username = username;
     this.roles    = typeof(roles) != 'undefined' ? roles : [];
     this.socket   = null;
+    this.x        = 0;
+    this.y        = 0;
 }
 
 /**
@@ -24,6 +26,20 @@ User.prototype.setSocket = function(socket)
 };
 
 /**
+ * Set user position
+ *
+ * @param {int} x
+ * @param {int} y
+ */
+User.prototype.setPosition = function(x, y)
+{
+    this.x = x;
+    this.y = y;
+
+    this.socket.broadcast.emit('user:move', {'username': this.username, 'x': this.x, 'y': this.y});
+};
+
+/**
  * Get a JSON serializable version of the user
  *
  * @return {object}
@@ -32,7 +48,9 @@ User.prototype.serialize = function()
 {
     return {
         'username': this.username,
-        'roles': this.roles
+        'roles': this.roles,
+        'x': this.x,
+        'y': this.y
     };
 };
 
