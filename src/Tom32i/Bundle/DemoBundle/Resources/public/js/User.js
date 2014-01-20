@@ -1,3 +1,9 @@
+/**
+ * User
+ *
+ * @param {string} username
+ * @param {object} roles
+ */
 function User(username, roles)
 {
     this.username = username;
@@ -8,21 +14,41 @@ function User(username, roles)
     this.y        = 0;
 }
 
+/**
+ * Set socket
+ *
+ * @param {object} socket
+ */
 User.prototype.setSocket = function(socket)
 {
     this.socket = socket;
 };
 
+/**
+ * Set username
+ *
+ * @param {string} username
+ */
 User.prototype.setUsername = function(username)
 {
     this.username = username;
 };
 
+/**
+ * Set roles
+ *
+ * @param {object} roles
+ */
 User.prototype.setRoles = function(roles)
 {
     this.roles = roles;
 };
 
+/**
+ * Get Dom Element
+ *
+ * @return {DOMElement}
+ */
 User.prototype.getElement = function()
 {
     if (this.element == null) {
@@ -34,6 +60,9 @@ User.prototype.getElement = function()
     return this.element;
 };
 
+/**
+ * Detach Dom Element
+ */
 User.prototype.detach = function()
 {
     if (this.element) {
@@ -41,6 +70,12 @@ User.prototype.detach = function()
     }
 };
 
+/**
+ * Set user position
+ *
+ * @param {int} x
+ * @param {int} y
+ */
 User.prototype.setPosition = function(x, y)
 {
     this.x = x;
@@ -49,6 +84,9 @@ User.prototype.setPosition = function(x, y)
     this.updateElement();
 };
 
+/**
+ * Update DOM Element position
+ */
 User.prototype.updateElement = function()
 {
     this.element.style.left = this.x + 'px';

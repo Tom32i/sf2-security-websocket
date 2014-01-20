@@ -1,3 +1,8 @@
+/**
+ * Client
+ *
+ * @param {string} ticket
+ */
 function Client(ticket)
 {
     this.me    = null;
@@ -18,6 +23,9 @@ function Client(ticket)
     this.list.style.height = window.innerHeight + 'px';
 }
 
+/**
+ * Attach Websocket and window events
+ */
 Client.prototype.attachEvents = function()
 {
     this.socketConnection.on("connect", this.onSocketConnected.bind(this));
@@ -31,6 +39,9 @@ Client.prototype.attachEvents = function()
     document.body.onmousemove = this.onMouseMove.bind(this);
 };
 
+/**
+ * On socket connected
+ */
 Client.prototype.onSocketConnected = function ()
 {
     console.log("Connected to socket server");
@@ -40,6 +51,9 @@ Client.prototype.onSocketConnected = function ()
     this.me.setSocket(this.socketConnection.socket);
 };
 
+/**
+ * On socket disconnected
+ */
 Client.prototype.onSocketDisconnected = function(e)
 {
     console.log("Disconnected from socket server: %o", e);
@@ -47,6 +61,11 @@ Client.prototype.onSocketDisconnected = function(e)
     this.me = null;
 };
 
+/**
+ * On client authenticated
+ *
+ * @param {object} data
+ */
 Client.prototype.onAuthenticated = function(data)
 {
     this.me.setUsername(data.username);
@@ -55,6 +74,11 @@ Client.prototype.onAuthenticated = function(data)
     this.addUser(this.me);
 };
 
+/**
+ * On user join
+ *
+ * @param {object} data
+ */
 Client.prototype.onUserJoin = function(data)
 {
     var user = new User(data.username, data.roles);
@@ -62,6 +86,11 @@ Client.prototype.onUserJoin = function(data)
     this.addUser(user);
 };
 
+/**
+ * On user leave
+ *
+ * @param {object} data
+ */
 Client.prototype.onUserLeave = function(data)
 {
     if (typeof this.users[data.username] != 'undefined') {
@@ -73,6 +102,11 @@ Client.prototype.onUserLeave = function(data)
     }
 };
 
+/**
+ * Add user to the list
+ *
+ * @param {User} user
+ */
 Client.prototype.addUser = function(user)
 {
     this.users[user.username] = user;
@@ -80,6 +114,11 @@ Client.prototype.addUser = function(user)
     this.list.appendChild(user.getElement());
 };
 
+/**
+ * On user move
+ *
+ * @param {object} data
+ */
 Client.prototype.onUserMove = function(data)
 {
     if (typeof this.users[data.username] != 'undefined' && typeof(data.x) != 'undefined' && typeof(data.y) != 'undefined') {
@@ -87,6 +126,11 @@ Client.prototype.onUserMove = function(data)
     }
 };
 
+/**
+ * On mouse move
+ *
+ * @param {object} e
+ */
 Client.prototype.onMouseMove = function(e)
 {
     this.me.setPosition(e.clientX, e.clientY);
