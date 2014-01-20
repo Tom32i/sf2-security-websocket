@@ -7,7 +7,7 @@
 #intro h1 {
 	width: 60%;
 	min-height: 500px;
-	margin: 5% auto 0;
+	margin: 18% auto 0;
 }
 .block {
 	display: block;
@@ -35,7 +35,7 @@
 	opacity: .8;
 	font-size: 60%;
 	display: block;
-	margin-top: 1em;
+	margin-top: 1.5em;
 }
 
 .slide.image.partial {
