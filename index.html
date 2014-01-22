@@ -96,7 +96,7 @@ Upgrade: websocket</code></pre>
     <section class="slide">
         <h2>Anyone can connect</h2>
         <pre class="delayed"><code lang="javascript">var script = document.createElement("script");
-script.src = "/socket.io/socket.io.js";
+script.src = "http://websocket.symfony2.local/socket.io/socket.io.js";
 document.body.appendChild(script);</code></pre>
 <pre class="delayed"><code lang="javascript">var socket = io.connect(
     "http://websocket.symfony2.local/",
