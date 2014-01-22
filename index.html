@@ -31,7 +31,7 @@
             <li class="delayed">A client/server connexion</li>
             <li class="delayed">Work both ways</li>
             <li class="delayed">Stays open</li>
-            <li class="delayed">Event based</li>
+            <li class="delayed">Event based messages</li>
         </ul>
     </section>
 
@@ -58,7 +58,15 @@ Upgrade: websocket</code></pre>
     </section>
 
     <section class="slide">
-        <h2>Event system</h2>
+        <h2>Sending messages:</h2>
+        <pre class="delayed"><code lang="javascript">socket.onmessage = function (event) {
+  console.log(event.data);
+}</code></pre>
+        <pre class="delayed"><code lang="javascript">socket.send("Much string. Very message. Wow.");</code></pre>
+    </section>
+
+    <section class="slide">
+        <h2>Socket.io Event system</h2>
         <pre class="delayed"><code lang="javascript">socket.emit(
     "user:say",
     {user: 1, message: "Hi."}
@@ -86,7 +94,7 @@ Upgrade: websocket</code></pre>
     </header>
 
     <section class="slide">
-        <h2>Node JS + Socket.io</h2>
+        <h2>Websocket server security</h2>
         <ul>
             <li class="delayed">No authentication</li>
             <li class="delayed">No authorization</li>
