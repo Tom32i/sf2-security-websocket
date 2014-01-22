@@ -15,6 +15,7 @@ function Client(ticket)
         {
             port: 8000,
             transports: ["websocket"],
+            reconnect: false,
             query: 'ticket=' + encodeURIComponent(ticket)
         }
     );
