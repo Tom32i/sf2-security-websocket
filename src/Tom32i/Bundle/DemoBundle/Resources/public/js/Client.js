@@ -12,7 +12,8 @@ function Client()
         "http://" + window.location.hostname + "/",
         {
             port: 8000,
-            transports: ["websocket"]
+            transports: ["websocket"],
+            reconnect: false
         }
     );
 
