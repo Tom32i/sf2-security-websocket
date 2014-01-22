@@ -6,10 +6,15 @@
 
     <parameters>
         <parameter key="tom32i_demo.redis_indexer.class">Tom32i\Bundle\DemoBundle\Service\RedisIndexer</parameter>
-        <parameter key="tom32i_demo.login_listener.class">Tom32i\Bundle\DemoBundle\Service\LoginListener</parameter>
+        <parameter key="tom32i_demo.kernel_subscriber.class">Tom32i\Bundle\DemoBundle\Service\KernelSubscriber</parameter>
     </parameters>
 
     <services>
         <service id="tom32i_demo.redis_indexer" class="%tom32i_demo.redis_indexer.class%" />
+
+        <service id="acme.demobundle.kernel_subscriber" class="%tom32i_demo.kernel_subscriber.class%">
+            <tag name="kernel.event_subscriber" />
+            <argument type="service" id="tom32i_demo.redis_indexer" />
+        </service>
     </services>
 </container>
