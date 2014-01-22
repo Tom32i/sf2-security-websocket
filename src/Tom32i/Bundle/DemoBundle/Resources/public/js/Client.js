@@ -6,6 +6,7 @@
 function Client(ticket)
 {
     this.me    = null;
+    this.drag  = false;
     this.users = {};
     this.list  = document.getElementById('user-list');
 
@@ -37,6 +38,8 @@ Client.prototype.attachEvents = function()
     this.socketConnection.on("user:move", this.onUserMove.bind(this));
 
     document.body.onmousemove = this.onMouseMove.bind(this);
+    document.body.onmousedown = this.onMouseToggle.bind(this);
+    document.body.onmouseup   = this.onMouseToggle.bind(this);
 };
 
 /**
@@ -133,6 +136,18 @@ Client.prototype.onUserMove = function(data)
  */
 Client.prototype.onMouseMove = function(e)
 {
-    this.me.setPosition(e.clientX, e.clientY);
-    this.socketConnection.emit('user:move', {'x': this.me.x, 'y': this.me.y});
+    if (this.drag) {
+        this.me.setPosition(e.clientX, e.clientY);
+        this.socketConnection.emit('user:move', {'x': this.me.x, 'y': this.me.y});
+    }
+};
+
+/**
+ * On Mouse Toggle
+ *
+ * @param {object} e
+ */
+Client.prototype.onMouseToggle = function(e)
+{
+    this.drag = e.type === 'mousedown';
 };
