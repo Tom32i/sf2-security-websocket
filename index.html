@@ -98,7 +98,7 @@ Upgrade: websocket</code></pre>
         <pre class="delayed"><code lang="javascript">var script = document.createElement("script");
 script.src = "/socket.io/socket.io.js";
 document.body.appendChild(script);</code></pre>
-<pre class="delayed"><code lang="javascript">io.connect(
+<pre class="delayed"><code lang="javascript">var socket = io.connect(
     "http://websocket.symfony2.local/",
     { port: 8000, transports: ["websocket"] }
 );</code></pre>
