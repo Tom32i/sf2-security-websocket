@@ -32,7 +32,6 @@ Server.prototype.createSocket = function(config)
         function() {
             socket.set('transports', ["websocket"]);
             socket.set('log level', 2);
-            socket.set('origin', config.allowed_domain);
         }
     );
 

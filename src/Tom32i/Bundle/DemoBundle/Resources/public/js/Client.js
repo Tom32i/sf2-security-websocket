@@ -1,9 +1,7 @@
 /**
  * Client
- *
- * @param {string} ticket
  */
-function Client(ticket)
+function Client()
 {
     this.me    = null;
     this.users = {};
@@ -13,8 +11,7 @@ function Client(ticket)
         "http://" + window.location.hostname + "/",
         {
             port: 8000,
-            transports: ["websocket"],
-            query: 'ticket=' + encodeURIComponent(ticket)
+            transports: ["websocket"]
         }
     );
 
@@ -54,9 +51,9 @@ Client.prototype.onSocketConnected = function ()
 /**
  * On socket disconnected
  */
-Client.prototype.onSocketDisconnected = function(e)
+Client.prototype.onSocketDisconnected = function()
 {
-    console.log("Disconnected from socket server: %o", e);
+    console.log("Disconnected from socket server.");
 
     this.me = null;
 };
@@ -68,6 +65,8 @@ Client.prototype.onSocketDisconnected = function(e)
  */
 Client.prototype.onAuthenticated = function(data)
 {
+    console.log("authenticated: %o", data);
+
     this.me.setUsername(data.username);
     this.me.setRoles(data.roles);
 
@@ -81,6 +80,8 @@ Client.prototype.onAuthenticated = function(data)
  */
 Client.prototype.onUserJoin = function(data)
 {
+    console.log("User join: %o", data);
+
     var user = new User(data.username, data.roles);
 
     this.addUser(user);
@@ -93,6 +94,8 @@ Client.prototype.onUserJoin = function(data)
  */
 Client.prototype.onUserLeave = function(data)
 {
+    console.log("User leave: %o", data);
+
     if (typeof this.users[data.username] != 'undefined') {
         var user = this.users[data.username];
 
@@ -121,6 +124,8 @@ Client.prototype.addUser = function(user)
  */
 Client.prototype.onUserMove = function(data)
 {
+    //console.log("User leave: %o", data);
+
     if (typeof this.users[data.username] != 'undefined' && typeof(data.x) != 'undefined' && typeof(data.y) != 'undefined') {
         this.users[data.username].setPosition(data.x, data.y);
     }
