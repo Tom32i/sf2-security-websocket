@@ -60,7 +60,7 @@ Client.prototype.onSocketConnected = function ()
  */
 Client.prototype.onSocketDisconnected = function(e)
 {
-    console.log("Disconnected from socket server: %o", e);
+    console.log("Disconnected from socket server.");
 
     this.me = null;
 };
@@ -72,6 +72,8 @@ Client.prototype.onSocketDisconnected = function(e)
  */
 Client.prototype.onAuthenticated = function(data)
 {
+    console.log("Authenticated: %o", data);
+
     this.me.setUsername(data.username);
     this.me.setRoles(data.roles);
 
@@ -85,6 +87,8 @@ Client.prototype.onAuthenticated = function(data)
  */
 Client.prototype.onUserJoin = function(data)
 {
+    console.log("User join: %o", data);
+
     var user = new User(data.username, data.roles);
 
     this.addUser(user);
@@ -97,6 +101,8 @@ Client.prototype.onUserJoin = function(data)
  */
 Client.prototype.onUserLeave = function(data)
 {
+    console.log("User leave: %o", data);
+
     if (typeof this.users[data.username] != 'undefined') {
         var user = this.users[data.username];
 
