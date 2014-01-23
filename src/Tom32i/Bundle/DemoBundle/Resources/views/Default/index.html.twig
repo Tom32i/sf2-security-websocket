@@ -1,11 +1,5 @@
 {% extends "base.html.twig" %}
 
-{% block stylesheets %}
-    {% stylesheets 'bundles/tom32idemo/css/*.css' %}
-        <link rel="stylesheet" href="{{ asset_url }}" />
-    {% endstylesheets %}
-{% endblock stylesheets %}
-
 {% block title 'Symfony 2 Security & Websockets' %}
 
 {% block body %}
@@ -17,10 +11,7 @@
 {% endblock body %}
 
 {% block javascripts %}
-    <script src="/socket.io/socket.io.js"></script>
-    {% javascripts 'bundles/tom32idemo/js/*' %}
-        <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}
+    {{ parent() }}
     <script>
         window.onload = function (e) { new Client('{{ ticket }}'); };
     </script>
