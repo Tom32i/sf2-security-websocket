@@ -63,11 +63,14 @@ class TicketManager
      */
     public function watch(Request $request, Response $response)
     {
-        $status  = $response->getStatusCode();
+        if (!$response->isSuccessful()) {
+            return;
+        }
+
         $token   = $this->context !== null ? $this->context->getToken() : null;
         $granted = $token && $token->isAuthenticated() && !($token instanceof AnonymousToken);
 
-        if ($granted && $response->isSuccessful()) {
+        if ($granted) {
             $ticket  = new Ticket(
                 $token->getUser(),
                 $request->getSession()->getId(),
