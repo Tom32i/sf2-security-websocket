@@ -128,7 +128,7 @@ Client.prototype.addUser = function(user)
  */
 Client.prototype.onUserMove = function(data)
 {
-    //console.log("User leave: %o", data);
+    //console.log("User move: %o", data);
 
     if (typeof this.users[data.username] != 'undefined' && typeof(data.x) != 'undefined' && typeof(data.y) != 'undefined') {
         this.users[data.username].setPosition(data.x, data.y);
