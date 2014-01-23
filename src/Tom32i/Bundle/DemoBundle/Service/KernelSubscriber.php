@@ -3,11 +3,12 @@
 namespace Tom32i\Bundle\DemoBundle\Service;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use Symfony\Component\HttpKernel\HttpKernel;
 use Tom32i\Bundle\DemoBundle\Model\Ticket;
-use Tom32i\Bundle\DemoBundle\Service\RedisIndexer;
+use Tom32i\Bundle\DemoBundle\Service\TicketManager;
 
 /**
  * Kernel Subscriber
@@ -15,20 +16,20 @@ use Tom32i\Bundle\DemoBundle\Service\RedisIndexer;
 class KernelSubscriber implements EventSubscriberInterface
 {
     /**
-     * Redis indexer
+     * Ticket manager
      *
-     * @var RedisIndexer
+     * @var TicketManager
      */
-    protected $indexer;
+    protected $manager;
 
     /**
-     * Rediser indexer
+     * Constructor
      *
-     * @param RedisIndexer $indexer
+     * @param TicketManager $manager
      */
-    public function __construct(RedisIndexer $indexer)
+    public function __construct(TicketManager $manager)
     {
-        $this->indexer = $indexer;
+        $this->manager = $manager;
     }
 
     /**
@@ -39,8 +40,7 @@ class KernelSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            //'kernel.controller' => ['onKernelController', 0],
-            'kernel.response' => ['onKernelResponse', 0],
+            KernelEvents::RESPONSE => ['onKernelResponse', 0],
         );
     }
 
@@ -51,32 +51,13 @@ class KernelSubscriber implements EventSubscriberInterface
      */
     public function onKernelResponse(FilterResponseEvent $event)
     {
+        if (!$event->isMasterRequest()) {
+            return;
+        }
+
+        $request  = $event->getRequest();
         $response = $event->getResponse();
 
-        if ($response->getStatusCode() === 200) {
-
-            $ticket  = new Ticket(
-                $this->getUser(),
-                $request->getSession()->getId(),
-                $request->server->get('REMOTE_ADDR')
-            );
-
-            $this->indexer->index($ticket, $ticket->getTTl());
-
-            $this->headers->add('Ticket-Token', (string) $ticket);
-        }
-    }
-
-    /**
-     * On Kernel Response
-     *
-     * @param FilterControllerEvent $event
-     *
-     * @return Response
-     */
-    public function onKernelController(FilterControllerEvent $event)
-    {
-        //var_dump($event->getController());
-        //$event->getRequest()->setFormat('jsonp', 'application/javascript');
+        $this->manager->watch($request, $response);
     }
 }
