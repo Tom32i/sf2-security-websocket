@@ -56,7 +56,7 @@ class TicketManager
     }
 
     /**
-     * Watch Requeset and Reponse
+     * Watch Request and Response
      *
      * @param Request $request
      * @param Response $response
