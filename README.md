@@ -1,11 +1,19 @@
 Symfony 2 Security & Websockets
 ===============================
 
+Demo branches:
+--------------
+
+* default: No security
+* secured: Security Ticket pattern implementation on a specific action
+* request: Security Ticket pattern implementation on each request
+
 Requirements:
 -------------
 
 * PHP >= 5.3.3
 * NodeJS >= 0.10.*
+* Redis >= 2.8.*
 
 Installation:
 -------------
@@ -25,7 +33,7 @@ Sample Apache VHost configuration:
         ServerName websocket.symfony2.local
 
         DocumentRoot ~/Sites/sf2-security-websocket/web
-        
+
         <Location /socket.io/>
             ProxyPass http://127.0.0.1:8000/socket.io/
             ProxyPassReverse http://127.0.0.1:8000/socket.io/
@@ -38,3 +46,12 @@ Sample Apache VHost configuration:
                 Allow from all
         </Directory>
     </VirtualHost>
+
+Launching the Demo Server:
+--------------------------
+
+    redis-server
+
+    node node/launch.js
+
+    php app/console assets:install
