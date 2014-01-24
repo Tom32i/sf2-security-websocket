@@ -30,7 +30,7 @@ class SecurityController extends Controller
             [
                 '_username'   => $session->get(SecurityContext::LAST_USERNAME),
                 '_password'   => null,
-                '_remeber_me' => true,
+                '_remember_me' => true,
             ],
             [
                 'action' => $this->generateUrl('login_check'),
