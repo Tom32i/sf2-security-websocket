@@ -20,7 +20,7 @@ Installation:
 
 Install Symfony2 and its vendors:
 
-    php composer.phar isntall
+    php composer.phar install
 
 Install NodeJS modules:
 
